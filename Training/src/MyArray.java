@@ -1,5 +1,4 @@
-import java.util.Arrays;
-import java.lang.Object.*;
+
 public class MyArray {
 	
 	int[] array;
@@ -13,6 +12,7 @@ public class MyArray {
 		for(int elem:array) {
 			System.out.print(elem);
 		}
+		System.out.println(" ");
 	}
 	
 	// O(N^2) time complexity for rotating an Array
@@ -39,7 +39,33 @@ public class MyArray {
 	// O(n) time complexity for rotating an array
 	// o(1) space complexity
 	public void QuickRotate(int NumOfRotations) {
-		array = ArrayUtils.reverse();
+		
+		reverse(0, NumOfRotations);
+		//reverse(NumOfRotations, array.length);
+		//reverse(0, array.length);
+		
+		
+		printArray();
+	}
+	private void reverse(int startIndex, int endIndex) {
+		int head = startIndex;
+		int length = endIndex -1;
+		int tail = endIndex;
+		
+		if(endIndex < 2) {//No need for a swap rotating only 1 element
+			return;
+		}
+		else {
+			while(head < length/2) {
+				int temp = array[head];
+				array[head] = array[tail];
+				array[tail] = temp;
+				
+				head++; 
+				tail--;
+			}
+		}
+		
 	}
 	// O(n) time complexity for rotating an array
 	// O(1) space complexity
